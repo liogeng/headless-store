@@ -1,5 +1,13 @@
 # GuoyuShop
 
+## 项目背景
+
+小规模的网店，须尽可能地减少成本。基于SAE低成本的kvdb存储数据，开发了此小店程序。
+
+后端提供数据服务，由tornado完成。
+
+前端由Angular完成。主要完成了用户注册、商品展示、检索、购物车、地址、微信支付等功能。应用了密码安全、xsrf、jwt等安全措施。
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
 
 ## Development server
