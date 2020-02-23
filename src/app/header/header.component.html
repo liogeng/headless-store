@@ -1,0 +1,26 @@
+<mat-toolbar color="primary" class="nav-bar mat-elevation-z4">
+  <div class="item">
+    <a mat-button routerLink="/products">
+      <h3 class="mat-h3">国宇出版</h3>
+    </a></div>
+
+  <form class="item" [formGroup]="searchForm" (ngSubmit)="search()">
+    <mat-form-field appearance="fill" class="search">
+      <input matInput formControlName="word">
+    </mat-form-field>
+
+    <button mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
+
+  <div class="item"><a mat-icon-button routerLink="/cart" matTooltip="购物车">
+      <mat-icon>shopping_cart</mat-icon>
+    </a>
+  </div>
+
+  <div class="item"><a mat-icon-button routerLink="/login" matTooltip="我的账户">
+      <mat-icon>account_box</mat-icon>
+    </a>
+  </div>
+</mat-toolbar>

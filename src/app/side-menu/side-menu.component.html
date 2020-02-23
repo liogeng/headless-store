@@ -1,0 +1,24 @@
+<mat-nav-list>
+  <h3 matSubheader>我的</h3>
+  <a mat-list-item routerLink="/login" *ngIf="!authService.isLoggedIn">
+    <mat-icon>account_circle</mat-icon><span class="row">登录</span>
+  </a>
+
+<ng-container *ngIf="authService.isLoggedIn">
+
+  <a mat-list-item routerLink="/profile" ><mat-icon>account_box</mat-icon>账户</a>
+  <a mat-list-item routerLink="/orders"><mat-icon>receipt</mat-icon>订单</a>
+  <a mat-list-item routerLink="/messages"><mat-icon>messages</mat-icon>消息</a>
+
+  <a mat-list-item (click)="authService.logout()">
+    <mat-icon>exit_to_app</mat-icon><span class="row">退出</span>
+  </a>
+</ng-container>
+
+  <mat-divider></mat-divider>
+
+  <h3 matSubheader>分类</h3>
+  <!-- <a mat-list-item *ngFor="let catogary of catogaries" (click)="filter(catogary.reg)">{{ catogary.name }}</a> -->
+  <a mat-list-item *ngFor="let catogary of catogaries" [routerLink]="['/products',{word:catogary.reg}]">{{ catogary.name }}</a>
+
+</mat-nav-list>

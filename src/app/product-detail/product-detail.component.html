@@ -1,0 +1,35 @@
+<div class=" content">
+
+
+  <div *ngIf="product$ | async as product">
+    <img src="{{ product.product_base.main_img }}" width="240px" style="margin-bottom: 24px;" />
+
+    <h1 class="mat-h2">{{ product.product_base.name }}</h1>
+    <h1 class="mat-h1 price">{{ product.sku_list[0].price  / 100 | currency:'CNY':'symbol-narrow' }}</h1>
+
+
+    <mat-form-field>
+      <input matInput type="number" value="1" min="1" max="999" name="quality" #quantity />
+    </mat-form-field>
+    &nbsp;<button mat-raised-button color="accent" (click)="addToCart(product, quantity.value)">加入购物车</button>
+
+    <p></p>
+    <mat-divider class="away"></mat-divider>
+
+    <ng-container *ngIf="product.product_base.detail_html">
+
+    <h1 class="mat-h3">详情</h1>
+
+    <div [innerHTML]="product.product_base.detail_html"></div>
+  </ng-container>
+
+
+    <h1 class="mat-h3">参数</h1>
+    <mat-list>
+      <mat-list-item *ngFor="let property of product.product_base.property">
+        {{ property.id }}：{{ property.vid }}
+      </mat-list-item>
+    </mat-list>
+
+  </div>
+</div>

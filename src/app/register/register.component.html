@@ -1,0 +1,35 @@
+<div class="mat-typography content">
+  <h2>我的</h2>
+  <h3>注册</h3>
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="邮箱" formControlName="emailFormControl" [errorStateMatcher]="matcher">
+      <mat-error
+        *ngIf="email.hasError('email') && !email.hasError('required')">
+        请输入一个能用的邮箱地址
+      </mat-error>
+      <mat-error *ngIf="email.hasError('required')">
+        邮箱<strong>必填</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput type="password" placeholder="密码"
+        formControlName="passwordFormControl" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="password.hasError('minLength') || password.hasError('required')">
+        密码长度须大于8位
+      </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput type="password" placeholder="确认密码"
+        formControlName="checkPasswordFormControl" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="!registerForm.hasError('identityRevealed')">
+        确认密码与密码须完全一致
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button [disabled]="!registerForm.valid">注册</button>
+  </form>
+</div>

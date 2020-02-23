@@ -1,0 +1,10 @@
+.footer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+.item {
+  width: auto
+}

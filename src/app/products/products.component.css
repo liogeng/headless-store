@@ -1,0 +1,45 @@
+.link {
+  text-decoration: none;
+  color: #212121;
+}
+
+.link:hover {
+  color: #212121;
+}
+
+.button-row button,
+.button-row a {
+  margin-right: 8px;
+}
+
+.title {
+ margin-bottom: 24px;
+}
+
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  row-gap: 48px;
+  column-gap: 24px;
+  justify-items: center;
+}
+
+.show-item {
+  display: grid;
+  grid-template-rows: 216px auto;
+  row-gap: 8px;
+  justify-items: center;
+
+  /* text-align: center; */
+  /* padding: 0 20px; */
+}
+
+.show-item .text{
+  text-align: left;
+  margin-top: 20px ;
+}
+
+.price {
+  color: #d81b60;
+}

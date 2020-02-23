@@ -1,0 +1,18 @@
+<div class="items" [style.column-gap.px]="(handsetService.isHandset$ | async) ? 8 : 24">
+  <div *ngFor="let product of items$ | async" class="show-item">
+    <a routerLink="/detail/{{ product.product_id }}">
+      <img src="{{ product.main_img }}"  width="100%">
+    </a>
+
+    <div class="text">
+      <span class="mat-h3 price">{{ product.price / 100 | currency:'CNY':'symbol-narrow' }}</span><br />
+
+      <a routerLink="/detail/{{ product.product_id }}" class="link">
+        {{ product.name}}
+      </a>
+    </div>
+
+  </div>
+</div>
+
+

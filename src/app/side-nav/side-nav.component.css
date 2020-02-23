@@ -1,0 +1,79 @@
+.sidenav-container {
+  height: 100%;
+  /* background-color: #fce4ec; */
+}
+
+.sidenav {
+  width: 240px;
+  background-color: #b0bec5;
+  /* padding-top: 64px; */
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0px;
+  z-index: 99;
+}
+
+.row {
+  margin-left: 8px;
+}
+
+.space {
+  flex: 1 1 auto;
+}
+
+.search {
+  width:144px;
+  margin-right:-40px;
+}
+
+.main-handset {
+  margin: 0 8px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  grid-template-areas: "h"
+                        "m";
+  row-gap: 8px;
+  justify-items: center;
+  align-items: start;
+  grid-auto-flow: row;
+}
+
+
+.top-ad {
+  grid-area: h;
+  align-self: center;
+}
+
+.main-outlet {
+  grid-area: m;
+  margin-bottom: 64px;
+}
+
+.side-ad {
+  grid-area: s;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  margin: 0 16px;
+  display: grid;
+  grid-template-columns: auto 200px;
+  grid-template-rows: auto auto;
+  grid-template-areas: "h h"
+                        "m s";
+  justify-items: center;
+  align-items: start;
+  column-gap: 24px;
+  row-gap: 16px;
+  background-color: #eeeeee;
+}
+
+

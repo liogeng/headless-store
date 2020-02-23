@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://wxncdqh.applinzi.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

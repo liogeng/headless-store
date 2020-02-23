@@ -1,0 +1,69 @@
+<div class="content">
+  <h2>结账</h2>
+
+  <app-cart-list></app-cart-list>
+
+  <mat-divider></mat-divider>
+
+  <app-address (changed)="onChanged($event)" #addressCom></app-address>
+  <div class="example-selected-value">此单收货地址：
+    <span *ngIf="address; else elseBlock2">{{ addressCom.getAddressOut(address) }}</span>
+    <ng-template #elseBlock2><span class="accent">等待确定</span></ng-template>
+
+  </div>
+  <mat-divider></mat-divider>
+
+  <!-- <app-receipt></app-receipt> -->
+  <h3>发票信息</h3>
+  <mat-form-field class="full-width">
+  <textarea matInput [(ngModel)]="receipt">
+
+  </textarea>
+</mat-form-field>
+  <mat-divider></mat-divider>
+
+  <h3>支付方式</h3>
+  <mat-radio-group [(ngModel)]="theCheckType">
+    <mat-radio-button *ngFor="let type of checkType" [value]="type">
+      {{ type.name }}
+    </mat-radio-button>
+
+  </mat-radio-group>
+
+  <div *ngIf="theCheckType">
+    <div *ngIf="theCheckType.id === 1; else elseBlock">
+
+
+      <mat-list>
+        <h4>银行汇款</h4>
+        <mat-list-item>开户行：工行北京会城门支行</mat-list-item>
+        <mat-list-item>账号：0200 0414 0920 1503 351
+        </mat-list-item>
+        <mat-list-item>户名：北京国宇出版有限公司
+        </mat-list-item>
+        <h4>邮局汇款</h4>
+        <mat-list-item> 收款商户号：111340222</mat-list-item>
+        <mat-list-item>单位名称：北京国宇出版有限公司</mat-list-item>
+        <mat-list-item>收款地址：北京西城区南蜂窝路5号607</mat-list-item>
+        <mat-list-item>邮编：100055</mat-list-item>
+
+      </mat-list>
+
+      <button mat-raised-button color="accent" (click)="submitOrder()" [disabled]="!isOk()">提交订单</button>
+    </div>
+    <ng-template #elseBlock>
+
+      <button mat-raised-button color="accent" (click)="wxPay()"  [disabled]="!isOk()">微信支付</button>
+      <div  *ngIf="codeUrl">
+      <qrcode [qrdata]="codeUrl" [width]="384" [errorCorrectionLevel]="'M'"></qrcode>
+      <h4>微信扫一扫</h4>
+    </div>
+    <div *ngIf="data">
+      生成订单，请确认支付
+      <button mat-raised-button color="accent" (click)="confirm()">确认</button>
+    </div>
+    </ng-template>
+  </div>
+
+
+</div>

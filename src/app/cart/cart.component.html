@@ -1,0 +1,67 @@
+<div class="mat-typography content">
+  <h2>购物车</h2>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="selected">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="img">
+      <th mat-header-cell *matHeaderCellDef>图</th>
+      <td mat-cell *matCellDef="let element" style="padding:2pt; text-align: center;">
+        <img [src]="element.main_img" width="40pt" />
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>名称</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      <td mat-footer-cell *matFooterCellDef>总计</td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>单价</th>
+      <td mat-cell *matCellDef="let element" style="text-align: right;">
+        {{ element.price /100 | currency:'CNY':'symbol-narrow' }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef>数量</th>
+      <td mat-cell *matCellDef="let element" style="text-align: right;">
+        <input matInput (click)="$event.stopPropagation()" [(ngModel)]="element.quantity" type="number" min="0"
+          max="999" style="width:60px;" />
+      </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="cost">
+      <th mat-header-cell *matHeaderCellDef>金额</th>
+      <td mat-cell *matCellDef="let element" style="text-align: right;">
+        {{ element.quantity * element.price / 100 | currency:'CNY':'symbol-narrow' }}</td>
+      <td mat-footer-cell *matFooterCellDef style="text-align: right;">
+        {{ getTotalCost() / 100 | currency:'CNY':'symbol-narrow' }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+  <p></p>
+
+  <div class='button-row'>
+    <a mat-raised-button color="accent" routerLink="/check">结账</a>
+    <button mat-raised-button color="accent" (click)="clear()">清空</button>
+  </div>
+</div>
