@@ -76,4 +76,64 @@
   background-color: #eeeeee;
 }
 
+.main-menu {
+  align-items: center;
+  align-items: stretch;
+  background-color: #fff;
+  border-bottom: 1px solid #f6f6f6;
+  display: flex;
+  flex-direction: row;
+  height: 3.55rem;
+  position: relative;
+}
 
+.main-menu__left {
+  flex-basis: calc(50% - 2rem);
+  height: 100%;
+}
+
+@media (min-width: 540px) {
+  .main-menu__left {
+    flex-basis: calc(50% - 4rem);
+  }
+}
+
+.main-menu__left ul {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+
+ul {
+  list-style: outside none none;
+}
+
+.main-menu__item, .main-menu__hamburger {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-menu__item, .main-menu__hamburger {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h3 {
+  color: rgb(50, 50, 50);
+  padding: 8px 24px;
+}
+
+.bar {
+  position: absolute;
+  top:64px;
+  left: 0px;
+  display: flex;
+  flex-direction: row;
+}

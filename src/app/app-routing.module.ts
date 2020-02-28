@@ -15,10 +15,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AddressComponent } from './address/address.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/products', pathMatch: 'full'},
-  {path: 'products', component: ProductsComponent, canDeactivate: [CanDeactivateGuard]},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'group', component: ProductsComponent, canDeactivate: [CanDeactivateGuard]},
   {path: 'detail/:id', component: ProductDetailComponent},
   {path: 'cart', component: CartComponent, canDeactivate: [CanDeactivateGuard]},
   {path: 'check', component: CheckComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]},
@@ -29,7 +31,8 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'orders', component: OrdersComponent},
   {path: 'messages', component: MessagesComponent},
-  {path: 'address', component: AddressComponent}
+  {path: 'address', component: AddressComponent},
+  // {path: 'group/:id', component: ProductsComponent}
 
 ];
 

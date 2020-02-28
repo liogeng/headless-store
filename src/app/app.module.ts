@@ -22,6 +22,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { QRCodeModule } from 'angularx-qrcode';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -47,6 +48,9 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ReceiptComponent } from './receipt/receipt.component';
+import { HomeComponent } from './home/home.component';
+import { TopMenuComponent } from './top-menu/top-menu.component';
+import { TopMenuItemComponent } from './top-menu-item/top-menu-item.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +75,9 @@ import { ReceiptComponent } from './receipt/receipt.component';
     ProfileComponent,
     OrdersComponent,
     ReceiptComponent,
+    HomeComponent,
+    TopMenuComponent,
+    TopMenuItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,7 +104,9 @@ import { ReceiptComponent } from './receipt/receipt.component';
     AppRoutingModule,
     QRCodeModule,
     LayoutModule,
-    MatSidenavModule
+    MatSidenavModule,
+    OverlayModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,11 +1,11 @@
 /* autoprefixer grid: autoplace /
 /* You can add global styles to this file, and also import other style files */
 /* @import '@angular/material/prebuilt-themes/indigo-pink.css'; */
-@import './candy.theme.scss'
 
 html, body { height: 100%; }
 
 body {
   margin: 0;
   font-family: Roboto, "Noto Sans SC", sans-serif;
+  color: rgb(50, 50, 50)
 }

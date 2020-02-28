@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Product } from './product';
+import { Group } from './group';
 import { MessageService } from './message.service';
 
 @Injectable({
@@ -48,4 +49,15 @@ export class ProductService {
         catchError(this.handleError<Product>(`getProduct id=${id}`))
       );
   }
+
+  getGroups(): Observable<Group[]> {
+    const url = '/api/get-groups';
+    return this.http.get<Group[]>(url)
+      .pipe(
+        catchError(this.handleError<Group[]>(`getGroups`, []))
+      );
+
+  }
+
+
 }
