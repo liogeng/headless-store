@@ -60,7 +60,7 @@
     </div>
     <div *ngIf="data">
       生成订单，请确认支付
-      <button mat-raised-button color="accent" (click)="confirm()">确认</button>
+      <button mat-raised-button color="accent" (click)="confirm()" [disabled]="isConfirmed">确认</button>
     </div>
     </ng-template>
   </div>

@@ -10,6 +10,7 @@ export class CartService {
   // items = [];
   items: ProductElement[] = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
   fee: number;
+  freight: number;
 
   constructor(
     private messageService: MessageService

@@ -11,12 +11,12 @@ import { ProductElement } from '../product-element';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-
 export class CartComponent implements OnInit {
   displayedColumns: string[] = ['selected', 'img', 'name', 'price', 'quantity', 'cost'];
 
   dataSource: MatTableDataSource<ProductElement>;
   selection = new SelectionModel<ProductElement>(true, []);
+  freight: number;
 
   constructor(
     private cartService: CartService,
@@ -56,6 +56,10 @@ export class CartComponent implements OnInit {
       }
 
     })
+    this.cartService.fee =  sum;
+    this.cartService.freight = (sum > 0 && sum < 5000) ? 1000 : 0;
+    this.freight = this.cartService.freight;
+
     return sum;
   }
 

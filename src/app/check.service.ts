@@ -78,17 +78,17 @@ export class CheckService {
       package: jsApiParameters.package,
       signType: jsApiParameters.signType,
       paySign: jsApiParameters.paySign,
-      success: res => {
+      success: function(res) {
         if (res.err_msg == "get_brand_wcpay_request:ok") {
           this.log('支付成功');
           this.cartService.items = [];
           localStorage.removeItem('cart');
         }
         else {
-          this.log(`支付失败，${res.err_msg}`);
+          this.log(res.err_msg);
         }
       },
-      fail:  res => {
+      fail:  function(res) {
         this.log(JSON.stringify(res));
       }
     });
