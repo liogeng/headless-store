@@ -21,6 +21,7 @@ export class CheckComponent implements OnInit {
   address: Address;
   codeUrl: string;
   data: any;
+  isConfirmed: boolean;
 
   constructor(
     private cartService: CartService,
@@ -33,6 +34,7 @@ export class CheckComponent implements OnInit {
       { 'id': 2, 'name': '线上' },
     ];
     this.receipt = localStorage.getItem('receipt') || '';
+    this.isConfirmed = false;
   }
 
   onChanged(address) {
@@ -45,7 +47,7 @@ export class CheckComponent implements OnInit {
 
     return {
       'products': items,
-      'fee': this.cartService.fee,
+      'fee': this.cartService.fee + this.cartService.freight,
       'address': this.address,
       'receipt': this.receipt,
       'checkType': this.theCheckType
@@ -104,7 +106,7 @@ export class CheckComponent implements OnInit {
   confirm() {
     const jsApiParameters = this.data.jsApiParameters;
     this.checkService.confirm(jsApiParameters);
-
+    this.isConfirmed = true;
   }
 
 }

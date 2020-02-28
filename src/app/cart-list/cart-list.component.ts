@@ -10,17 +10,16 @@ import { CartService } from '../cart.service';
 })
 export class CartListComponent implements OnInit {
   items: ProductElement [];
+  fee: number;
+  freight: number;
 
   constructor(
     private cartService: CartService,) { }
 
   ngOnInit() {
     this.items = this.cartService.items.filter(i => i.selected === true);
-    this.cartService.fee = this.getTotalCost();
-
+    this.fee = this.cartService.fee;
+    this.freight = this.cartService.freight;
   }
 
-  getTotalCost() {
-    return this.items.map(t => t.price * t.quantity).reduce((p, c) => p + c, 0);
-  }
 }
