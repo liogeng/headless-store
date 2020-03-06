@@ -12,11 +12,11 @@
 .sidenav .mat-toolbar {
   background: inherit;
 }
-
-.mat-toolbar.mat-primary {
-  position: sticky;
+/* .mat-primary */
+.mat-toolbar {
+  position: absolute;
   top: 0px;
-  z-index: 99;
+  /* z-index: 99; */
 }
 
 .row {
@@ -27,10 +27,7 @@
   flex: 1 1 auto;
 }
 
-.search {
-  width:144px;
-  margin-right:-40px;
-}
+
 
 .main-handset {
   margin: 0 8px;
@@ -46,21 +43,13 @@
 }
 
 
-.top-ad {
-  grid-area: h;
-  align-self: center;
-}
 
 .main-outlet {
   grid-area: m;
   margin-bottom: 64px;
 }
 
-.side-ad {
-  grid-area: s;
-  display: flex;
-  flex-direction: column;
-}
+
 
 .main {
   margin: 0 16px;
@@ -76,4 +65,27 @@
   background-color: #eeeeee;
 }
 
+.main-menu {
+  line-height: 64px;
+  width: 128px;
+}
 
+.main-menu__left {
+  flex-basis: calc(50% - 2rem);
+  height: 100%;
+}
+
+@media (min-width: 540px) {
+  .main-menu__left {
+    flex-basis: calc(50% - 4rem);
+  }
+}
+
+
+
+
+.sideRight {
+  width: 400px;
+  margin: 0;
+  padding: 0;
+}

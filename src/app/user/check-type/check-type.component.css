@@ -1,0 +1,25 @@
+.checkType {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) ;
+  grid-template-rows: 56px;
+  gap: 12px;
+  align-items: center;
+}
+
+
+.button {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0 1rem;
+}
+
+@media (max-width: 992px) {
+  .button {
+    grid-template-columns: 1fr;
+  }
+}
+
+.button button {
+  color: white;
+  width: 100%;
+}

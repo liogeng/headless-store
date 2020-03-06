@@ -1,0 +1,49 @@
+.box {
+  position: relative;
+  width: 1140px;
+  max-width: 100vw;
+  margin: 64px auto;
+  padding: 2rem 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.check-page {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 2rem;
+}
+
+.button {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0 1rem;
+}
+
+@media screen and (max-width:992px){
+  .box {
+    width: 100%;
+  }
+  .check-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1.5rem 0;
+    align-items: flex-start;
+  }
+  .button {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cart-list {
+  background-color: #eeeeee;
+  /* height: auto; */
+}
+
+
+
+.button button {
+  color: white;
+  width: 100%;
+}

@@ -1,0 +1,30 @@
+<div class="head">
+  <mat-icon>shopping_cart</mat-icon>
+  <h3>购物车</h3>
+  <span>{{items.length}}种</span>
+</div>
+<mat-divider></mat-divider>
+<ul class="contain">
+  <ng-container *ngFor="let product of items">
+
+  <li class="list">
+    <div class="left">
+      <img [src]="product.main_img">
+    </div>
+    <div class="main">
+      <p>{{ product.price / 100  | currency:'CNY':'symbol-narrow' }}</p>
+      <p>{{ product.name | slice:0:14 }}</p>
+      <span>{{ product.quantity }}</span>
+
+    </div>
+
+  </li>
+  <mat-divider></mat-divider>
+</ng-container>
+
+</ul>
+
+<div class="bottom-line">
+  <span>合计：{{fee / 100 | currency:'CNY':'symbol-narrow' }}</span><span
+    class="space"></span><span>运费：{{freight / 100 | currency:'CNY':'symbol-narrow'}}</span>
+</div>

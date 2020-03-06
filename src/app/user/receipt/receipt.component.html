@@ -1,0 +1,46 @@
+<div>
+
+
+  <form [formGroup]="receiptForm" (ngSubmit)="saveReceipt()" class="receipt">
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="抬头" formControlName="title">
+      <mat-error *ngIf="title.hasError('required')">
+        <strong>必填</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="社会信用代码或税号" formControlName="id">
+      <mat-error *ngIf="id.hasError('required')">
+        <strong>必填</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="开户行" formControlName="bank">
+      <mat-error *ngIf="bank.hasError('required')">
+        <strong>必填</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="账号" formControlName="account">
+      <mat-error *ngIf="account.hasError('required')">
+        <strong>必填</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="地址" formControlName="address">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="电话" formControlName="phone">
+    </mat-form-field>
+
+<div class="button">
+      <button mat-raised-button color="accent" matStepperNext type="button" [disabled]="!receiptForm.valid"><h3>下一步</h3></button>
+    </div>
+  </form>
+
+
+</div>

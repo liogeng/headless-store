@@ -1,0 +1,125 @@
+.box {
+  position: relative;
+  width: 1140px;
+  max-width: 100vw;
+  margin: 64px auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+
+}
+
+@media screen and (max-width:992px){
+  .box {
+    width: 100%;
+  }
+}
+
+.bread {
+  height: 96px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 1.5rem;
+}
+
+
+.link {
+  text-decoration: none;
+  color: #212121;
+  margin-right: 0.5rem;
+}
+
+.link:hover {
+  color: #002f6c;
+}
+
+
+.price {
+  color: #d32f2f;
+}
+
+.grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto;
+  gap: 2rem;
+  justify-items: center;
+  align-content: stretch;
+}
+.main {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 2rem;
+}
+@media (max-width:992px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width:540px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .main {
+    grid-template-columns: 0 1fr;
+    gap: 1rem;
+  }
+}
+
+.left {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  align-content: start;
+  gap: 8px;
+}
+
+.left a {
+
+  box-sizing: content-box;
+  border: 4px solid white;
+  font-size:0
+}
+
+.left a:hover {
+  box-sizing: content-box;
+  border: 4px solid teal;
+}
+
+
+
+.bigImg {
+  text-align: center;
+}
+
+.full {
+  width: 100%;
+}
+
+.right {
+  flex-grow: 1;
+  position: relative;
+
+}
+
+.sticky {
+  top: 0;
+  position: sticky;
+}
+
+.low {
+  position: relative;
+  margin-top: 56px;
+  min-height: 400px;
+}
+
+.white {
+  color: white;
+}

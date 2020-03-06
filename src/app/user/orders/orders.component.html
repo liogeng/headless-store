@@ -1,0 +1,12 @@
+<ol>
+  <li *ngFor="let order of myOrders">
+
+    {{order.out_trade_no}}:
+    {{getAddressOut(order.address)}}
+    <span *ngIf="order.time_end">--{{order.time_end}}</span>
+    <span *ngIf="order.check_type">--{{order.check_type['name']}}</span>
+    --{{order.total_fee/100  | currency:'CNY':'symbol-narrow' }}
+    <span *ngIf="order.result_code">--{{order.result_code}}</span>
+    --{{getProductList(order.products)}}
+  </li>
+</ol>

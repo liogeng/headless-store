@@ -1,0 +1,10 @@
+<div>
+  <form [formGroup]="checkTypeForm">
+    <mat-radio-group formControlName="type" class="checkType">
+      <mat-radio-button *ngFor="let type of checkTypes" [value]="type">{{ type }}</mat-radio-button>
+    </mat-radio-group>
+
+
+
+  </form>
+</div>

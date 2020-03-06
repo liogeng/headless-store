@@ -1,0 +1,18 @@
+<div class="box">
+  <div class="bread">
+    <a routerLink="/home" class="link">主页</a>
+    <span class="link">&gt;</span>
+    <a class="link" *ngIf="group" [routerLink]="[ '/group', group.group_id, {name: group.group_name} ]">
+      {{group.group_name }}
+    </a>
+  </div>
+  <mat-toolbar color="primary">A</mat-toolbar>
+  <div class="grid">
+
+    <app-block *ngFor="let product of products$ | async" [product]="product" [group]="group">
+  </app-block>
+
+  </div>
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+
+</div>

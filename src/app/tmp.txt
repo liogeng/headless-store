@@ -1,0 +1,19 @@
+ <ul>
+          <li *ngFor="let group of groups" class="main-menu__item">
+            <button mat-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{name:group.group_id}"
+              #menuTrigger="matMenuTrigger" [routerLink]="['/group',group.group_id]"
+              (mouseenter)="openMenu(menuTrigger)"
+              >
+              <h3 class="mat-h3">{{ group.group_name }}</h3>
+            </button>
+            <mat-menu #appMenu="matMenu" [hasBackdrop]="false" [overlapTrigger]="false">
+              <!-- -->
+              <ng-template matMenuContent let-name="name">
+                <button mat-menu-item (mouseleave)="closeMenu(menuTrigger)">KK{{name}}</button>
+              </ng-template>
+
+
+            </mat-menu>
+
+          </li>
+        </ul>

@@ -1,0 +1,42 @@
+
+.title {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 1rem;
+  margin: 0px 0px 0.5rem;
+  text-align: left;
+}
+
+.price {
+  font-size: 1rem;
+  margin: 0px 0px 0.5rem;
+  text-align: left;
+}
+
+.item {
+  background: #e0f2f1 none repeat scroll 0% 0%;
+  padding: 2.5rem;
+  text-align: center;
+  height: 100%;
+  max-height: 35rem;
+  transition: all 0.3s ease 0s;
+}
+
+a {
+  text-decoration: none;
+  color: #616161;
+}
+
+.item:hover {
+  background-color: #b2dfdb;
+}
+
+/* .grid a:hover {
+  color: #b2dfdb;
+} */
+
+.pic img{
+  width: auto;
+  height: auto;
+  max-width: 176px;
+}

@@ -1,0 +1,10 @@
+<a [routerLink]="[ '/detail', product.product_id, {group_id: group.group_id, group_name: group.group_name} ]">
+  <div class="item" [style.background-color]="color">
+    <h4 class="title">{{ product.name | slice:0:12 }}</h4>
+    <p class="price">{{ product.price / 100 | currency:'CNY':'symbol-narrow' }}</p>
+    <div class="pic">
+      <img src="{{ product.main_img }}">
+    </div>
+
+  </div>
+</a>
