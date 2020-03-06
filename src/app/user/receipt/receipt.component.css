@@ -1,0 +1,21 @@
+
+.receipt {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0 1rem;
+}
+
+@media (max-width: 992px) {
+  .receipt {
+    grid-template-columns: 1fr;
+  }
+}
+
+.button {
+  grid-column-start: 1;
+}
+
+.button button {
+  color: white;
+  width: 100%;
+}

@@ -9,3 +9,11 @@ body {
   font-family: Roboto, "Noto Sans SC", sans-serif;
   color: rgb(50, 50, 50)
 }
+
+html {
+  box-sizing: border-box;
+}
+
+*, ::before, ::after {
+  box-sizing: inherit;
+}

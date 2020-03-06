@@ -11,7 +11,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -23,61 +22,32 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { QRCodeModule } from 'angularx-qrcode';
-
+import { MatBadgeModule } from '@angular/material/badge';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductsComponent } from './products/products.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ShopModule } from './shop/shop.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+
 import { MessagesComponent } from './messages/messages.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { CartComponent } from './cart/cart.component';
-import { CheckComponent } from './check/check.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { GetbackPasswordComponent } from './getback-password/getback-password.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
-import { CartListComponent } from './cart-list/cart-list.component';
-import { AddressComponent } from './address/address.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
-
-import { TopAdComponent } from './top-ad/top-ad.component';
-import { SideAdComponent } from './side-ad/side-ad.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
-import { ProfileComponent } from './profile/profile.component';
-import { OrdersComponent } from './orders/orders.component';
-import { ReceiptComponent } from './receipt/receipt.component';
-import { HomeComponent } from './home/home.component';
-import { TopMenuComponent } from './top-menu/top-menu.component';
-import { TopMenuItemComponent } from './top-menu-item/top-menu-item.component';
+
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent,
-    ProductDetailComponent,
     MessagesComponent,
     HeaderComponent,
     FooterComponent,
-    CartComponent,
-    CheckComponent,
-    LoginComponent,
-    RegisterComponent,
-    GetbackPasswordComponent,
-    ChangePasswordComponent,
-    CartListComponent,
-    AddressComponent,
     SideNavComponent,
-    TopAdComponent,
-    SideAdComponent,
     SideMenuComponent,
-    ProfileComponent,
-    OrdersComponent,
-    ReceiptComponent,
-    HomeComponent,
-    TopMenuComponent,
-    TopMenuItemComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +59,6 @@ import { TopMenuItemComponent } from './top-menu-item/top-menu-item.component';
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    MatGridListModule,
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
@@ -100,12 +69,19 @@ import { TopMenuItemComponent } from './top-menu-item/top-menu-item.component';
     MatRadioModule,
     MatCardModule,
     MatMenuModule,
+    MatBadgeModule,
     HttpClientModule,
-    AppRoutingModule,
-    QRCodeModule,
+
+    ShopModule,
+    AuthModule,
+    UserModule,
+
     LayoutModule,
     MatSidenavModule,
-    OverlayModule
+    OverlayModule,
+    AppRoutingModule,
+
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 
   ],
   providers: [],

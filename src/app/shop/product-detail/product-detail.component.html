@@ -1,0 +1,68 @@
+<div class="box">
+  <div class="bread">
+    <a routerLink="/home" class="link">主页</a>
+    <span class="link">&gt;</span>
+    <a class="link" *ngIf="group" [routerLink]="[ '/group', group.group_id, {name: group.group_name} ]">
+      {{group.group_name }}
+    </a>
+    <span class="link">&gt;</span>
+    <a class="link" *ngIf="group && product$ | async as product"
+      [routerLink]="[ '/detail', product.product_id, {group_id: group.group_id, group_name:group.group_name} ]">
+      {{product.product_base.name }}
+    </a>
+  </div>
+
+  <div *ngIf="product$ | async as product">
+    <div class="grid">
+      <div class="main">
+        <div class="left">
+
+          <a><img src="{{ product.product_base.main_img }}" (mouseenter)="showImg=product.product_base.main_img"
+              width="100%" /></a>
+          <a *ngFor="let pic of product.product_base.img"><img [src]="pic" (mouseenter)="showImg=pic" width="100%"></a>
+        </div>
+        <div class="bigImg">
+          <img [src]="showImg?showImg:product.product_base.main_img" width="60%" />
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="sticky">
+          <h1 class="mat-h1">{{ product.product_base.name }}</h1>
+          <h1 class="mat-h2">{{ product.sku_list[0].price  / 100 | currency:'CNY':'symbol-narrow' }}</h1>
+
+
+          <mat-form-field class="full" appearance="outline">
+            <input matInput type="number" value="1" min="1" max="999" name="quality" #quantity />
+          </mat-form-field>
+
+          <button mat-flat-button color="accent" class="full" (click)="addToCart(product, quantity.value)">
+            <h2 class="white">加入购物车</h2>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="low">
+      <mat-tab-group animationDuration="0ms">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <h2>详情</h2>
+          </ng-template>
+          <div [innerHTML]="product.product_base.detail_html"></div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <h2>参数</h2>
+          </ng-template>
+          <mat-list>
+            <mat-list-item *ngFor="let property of product.product_base.property">
+              {{ property.id }}：{{ property.vid }}
+            </mat-list-item>
+          </mat-list>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
+  </div>
+</div>

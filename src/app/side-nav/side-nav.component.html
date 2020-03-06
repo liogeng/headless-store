@@ -1,11 +1,19 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" [attr.role]="(handsetService.isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(handsetService.isHandset$ | async) ? 'over' : 'side'" opened="false">
+    [mode]="(handsetService.isHandset$ | async) ? 'over' : 'side'" opened="false" >
     <!-- [opened]="(handsetService.isHandset$ | async) === false" -->
 
     <!-- <mat-toolbar >Menu</mat-toolbar> -->
     <app-side-menu></app-side-menu>
 
+
+  </mat-sidenav>
+  <mat-sidenav position="end" #sideRight mode="over"
+  [(opened)]="cartService.openSide"
+  (closedStart) = "closeSide()"
+  class="sideRight">
+
+    <router-outlet name="side"></router-outlet>
 
   </mat-sidenav>
 
@@ -15,33 +23,44 @@
         *ngIf="handsetService.isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <div class="main-menu__left">
-        <app-top-menu [menu]="menu" baseUrl="/group" *ngFor="let menu of topMenu"></app-top-menu>
-      </div>
-      国宇出版
 
+      <span *ngIf="(handsetService.isHandset$ | async) === false" class="main-menu__left">
+        <span *ngFor="let group of groups$ | async">
+          <a mat-button [routerLink]="['/group', group.group_id, {name: group.group_name}]" class="main-menu">
+            {{ group.group_name }}
+          </a>
+        </span>
+      </span>
+
+
+      国宇出版
 
       <span class="space"></span>
 
-      <form class="item" [formGroup]="searchForm" (ngSubmit)="search()">
+      <!-- <form class="item" [formGroup]="searchForm" (ngSubmit)="search()">
         <mat-form-field appearance="fill" class="search">
           <input matInput formControlName="word" placeholder="检索">
         </mat-form-field>
 
-        <button mat-icon-button [disabled]="!searchForm.valid">
+        <button mat-button [disabled]="!searchForm.valid">
           <mat-icon>search</mat-icon>
         </button>
-      </form>
-
-      <a mat-icon-button routerLink="/cart" matTooltip="购物车">
-        <mat-icon>shopping_cart</mat-icon>
+      </form> -->
+      <a mat-button routerLink="/auth">
+        <mat-icon>account_box</mat-icon>
       </a>
-
+      <a mat-button (click)="cartService.openSide=true" [routerLink]="[{ outlets: { side: ['bag'] } }]">
+        <mat-icon [matBadge]="cartService.items.length" matBadgeColor="accent">shopping_cart</mat-icon>
+      </a>
+      <a mat-button>
+        <mat-icon>search</mat-icon>
+      </a>
 
     </mat-toolbar>
 
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
+    <app-footer></app-footer>
 
   </mat-sidenav-content>
 
