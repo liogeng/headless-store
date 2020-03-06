@@ -56,17 +56,8 @@ export class CartComponent implements OnInit {
     return this.cartService.getTotalCost();
   }
 
-<<<<<<< HEAD:src/app/cart/cart.component.ts
-    })
-    this.cartService.fee =  sum;
-    this.cartService.freight = (sum > 0 && sum < 5000) ? 1000 : 0;
-    this.freight = this.cartService.freight;
-
-    return sum;
-=======
   getFreight() {
     return this.cartService.getFreight();
->>>>>>> dev:src/app/user/cart/cart.component.ts
   }
 
   save() {

@@ -9,14 +9,9 @@ import { ProductElement } from '../shop/product-element';
 export class CartService {
   // items = [];
   items: ProductElement[] = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-<<<<<<< HEAD:src/app/cart.service.ts
-  fee: number;
-  freight: number;
-=======
   // fee: number;
   // freight: number;
   openSide: boolean = false;
->>>>>>> dev:src/app/user/cart.service.ts
 
   constructor(
     private messageService: MessageService

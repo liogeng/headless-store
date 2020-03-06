@@ -8,6 +8,10 @@
 
 前端由Angular完成。主要完成了用户注册、商品展示、检索、购物车、地址、微信支付等功能。应用了密码安全、xsrf、jwt等安全措施。
 
+参照[saleor](https://demo.saleor.io/)修改了外观。
+
+运行实例：[https://wxncdqh.applinzi.com/guoyu-shop](https://wxncdqh.applinzi.com/guoyu-shop)。
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
 
 ## Development server

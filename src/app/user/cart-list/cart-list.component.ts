@@ -18,13 +18,8 @@ export class CartListComponent implements OnInit {
 
   ngOnInit() {
     this.items = this.cartService.items.filter(i => i.selected === true);
-<<<<<<< HEAD:src/app/cart-list/cart-list.component.ts
-    this.fee = this.cartService.fee;
-    this.freight = this.cartService.freight;
-=======
     this.fee = this.cartService.getTotalCost();
     this.freight = this.cartService.getFreight();
->>>>>>> dev:src/app/user/cart-list/cart-list.component.ts
   }
 
 }
