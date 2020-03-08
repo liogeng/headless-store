@@ -3,6 +3,8 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Observable } from 'rxjs';
 
 import { AuthService } from './auth/auth.service';
+import { CartService } from './user/cart.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ import { AuthService } from './auth/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
+    private cartService: CartService,
     private router: Router) {}
 
   canActivate(
@@ -27,7 +30,9 @@ export class AuthGuard implements CanActivate {
     this.authService.redirectUrl = url;
 
     // Navigate to the login page with extras
-    this.router.navigate(['/login']);
+    this.router.navigate([{ outlets: { side: ['login'] } }]);
+    this.cartService.openSide = true;
+
     return false;
   }
 }

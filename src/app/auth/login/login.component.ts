@@ -5,6 +5,7 @@ import { Md5 } from 'ts-md5/dist/md5';
 
 import { AuthService } from '../auth.service';
 import { User } from '../auth';
+import { CartService } from 'src/app/user/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    private cartService: CartService,
     private router: Router) {
   }
 
@@ -53,7 +55,7 @@ export class LoginComponent implements OnInit {
       if (this.authService.isLoggedIn) {
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
-        const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/products';
+        const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/home';
 
         // Redirect the user
         this.router.navigateByUrl(redirect);
@@ -63,5 +65,10 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  closeSide() {
+    this.cartService.openSide = false;
+
   }
 }

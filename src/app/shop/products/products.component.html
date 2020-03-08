@@ -6,13 +6,52 @@
       {{group.group_name }}
     </a>
   </div>
-  <mat-toolbar color="primary">A</mat-toolbar>
+
+  <!-- <mat-table [dataSource]="dataSource" matSort class="grid-table"> -->
+
+    <!-- Position Column -->
+    <!-- <ng-container matColumnDef="name">
+      <span *matHeaderCellDef>name</span>
+      <div  *matCellDef="let element"> {{element.name}} </div>
+    </ng-container> -->
+
+    <!-- Name Column -->
+    <!-- <ng-container matColumnDef="price">
+      <span *matHeaderCellDef mat-sort-header> price </span>
+      <div *matCellDef="let element"> {{element.price}} </div>
+    </ng-container> -->
+
+    <!-- Weight Column -->
+    <!-- <ng-container matColumnDef="main_img">
+      <span *matHeaderCellDef> img </span>
+      <div *matCellDef="let element"> {{element.main_img}} </div>
+    </ng-container> -->
+
+    <!-- <mat-header-row *matHeaderRowDef="['price']"></mat-header-row> -->
+    <!-- <div *matRowDef="let row; columns: ['name','main_img','price'];"></div> -->
+
+  <!-- </mat-table> -->
+  <mat-toolbar color="primary" class="bar">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="过滤">
+    </mat-form-field>
+
+    <span class="space"></span>
+    <span>数量：{{paginator.length}}</span>
+    <span>排序：</span>
+    <ng-container>
+    <span>无</span>
+  </ng-container>
+  </mat-toolbar>
   <div class="grid">
 
-    <app-block *ngFor="let product of products$ | async" [product]="product" [group]="group">
+    <app-block *ngFor="let product of items$ | async" [product]="product" [group]="group">
   </app-block>
 
   </div>
-  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+
+
+  <mat-paginator #paginator [pageSizeOptions]="[6, 12, 18]" showFirstLastButtons></mat-paginator>
+
 
 </div>

@@ -3,9 +3,12 @@
     [mode]="(handsetService.isHandset$ | async) ? 'over' : 'side'" opened="false" >
     <!-- [opened]="(handsetService.isHandset$ | async) === false" -->
 
-    <!-- <mat-toolbar >Menu</mat-toolbar> -->
-    <app-side-menu></app-side-menu>
-
+    <mat-toolbar>国宇</mat-toolbar>
+    <mat-nav-list>
+    <a mat-list-item *ngFor="let group of groups$ | async" [routerLink]="['/group', group.group_id, {name: group.group_name}]">
+        {{ group.group_name }}
+      </a>
+    </mat-nav-list>
 
   </mat-sidenav>
   <mat-sidenav position="end" #sideRight mode="over"
@@ -18,7 +21,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar>
+    <mat-toolbar class="mani-bar">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="handsetService.isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
@@ -46,7 +49,7 @@
           <mat-icon>search</mat-icon>
         </button>
       </form> -->
-      <a mat-button routerLink="/auth">
+      <a  mat-button (click)="cartService.openSide=true" [routerLink]="[{ outlets: { side: ['login'] } }]">
         <mat-icon>account_box</mat-icon>
       </a>
       <a mat-button (click)="cartService.openSide=true" [routerLink]="[{ outlets: { side: ['bag'] } }]">

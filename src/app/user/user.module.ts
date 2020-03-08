@@ -28,7 +28,10 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ReceiptComponent } from './receipt/receipt.component';
 import { CheckTypeComponent } from './check-type/check-type.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { CheckTypeComponent } from './check-type/check-type.component';
     AddressComponent,
     BagComponent,
     ReceiptComponent,
-    CheckTypeComponent
+    CheckTypeComponent,
+    ConfirmComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,
@@ -58,6 +63,7 @@ import { CheckTypeComponent } from './check-type/check-type.component';
     MatOptionModule,
     MatIconModule,
     MatStepperModule,
+    MatDialogModule,
     MatExpansionModule,
     QRCodeModule,
     LayoutModule,

@@ -11,15 +11,23 @@ import { AuthComponent } from './auth/auth.component';
 const authRoutes: Routes = [
 
   {
-    path: 'auth',
-    component: AuthComponent,
-    children: [
-      {path: 'login', component: LoginComponent},
-      {path: 'register', component: RegisterComponent},
-      {path: 'getback-password', component: GetbackPasswordComponent},
-      {path: 'change-password', component: ChangePasswordComponent},
-    ]
+    path: 'login',
+    component: LoginComponent,
+    outlet: 'side'
+  },
+  // {path: 'register', component: RegisterComponent},
+  {
+    path: 'getback-password',
+    component: GetbackPasswordComponent,
+    outlet: 'side'
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
   }
+
+
+
 
 ]
 

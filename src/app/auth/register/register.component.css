@@ -1,6 +1,17 @@
-.content {
-  width: 320px;
-}
+
 .full-width {
   width: 100%;
+}
+
+
+.main {
+  padding-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 0;
+}
+
+.main button {
+  width: 100%;
+  color: white;
 }

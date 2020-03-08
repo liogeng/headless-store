@@ -7,6 +7,7 @@ import { Status } from '../status';
 
 import { MessageService } from '../message.service';
 import { CartService } from './cart.service';
+import { Order } from './order';
 
 declare let wx: any;
 
@@ -20,6 +21,8 @@ export class CheckService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.jwtToken}`})
   }
+  orderInfo: Order;
+
   constructor(
     private http: HttpClient,
     private cartService: CartService,

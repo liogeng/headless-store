@@ -27,27 +27,6 @@
           </div>
         </mat-step>
 
-        <mat-step>
-          <ng-template matStepLabel><h2>生成订单</h2></ng-template>
-          <div *ngIf="result">
-          <p>{{ result }}</p>
-          </div>
-
-          <div  *ngIf="codeUrl">
-            <qrcode [qrdata]="codeUrl" [width]="384" [errorCorrectionLevel]="'M'"></qrcode>
-            <h4>微信扫一扫</h4>
-          </div>
-
-          <div *ngIf="data">
-            生成订单，请确认支付
-            <button mat-raised-button color="accent" (click)="wxConfirm()" [disabled]="isConfirmed">确认</button>
-          </div>
-
-
-
-
-
-        </mat-step>
 
       </mat-vertical-stepper>
 

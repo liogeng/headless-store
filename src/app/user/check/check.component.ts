@@ -1,19 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreakpointObserver } from '@angular/cdk/layout';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { CheckService } from '../check.service';
 import { CartService } from '../cart.service';
-import { Address } from '../address';
 import { AddressComponent } from '../address/address.component';
 import { ReceiptComponent } from '../receipt/receipt.component';
 import { ProductElement } from '../../shop/product-element';
 import { CheckTypeComponent } from '../check-type/check-type.component';
-import { OrderService } from '../order.service';
 import { Router } from '@angular/router';
+import { DialogComponent } from '../dialog/dialog.component';
+// import { DialogService } from 'src/app/dialog.service';
 
-declare let wx: any;
+
 
 @Component({
   selector: 'app-check',
@@ -25,9 +25,7 @@ export class CheckComponent implements OnInit {
   @ViewChild('receiptForm') private receiptComponent: ReceiptComponent;
   @ViewChild('checkTypeForm') private checkTypeComponent: CheckTypeComponent;
 
-  codeUrl: string;
-  data: any;
-  isConfirmed: boolean;
+
   isLinear: boolean = true;
   isSmallScreen: boolean;
   result: string;
@@ -35,15 +33,15 @@ export class CheckComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private checkService: CheckService,
-    private orderService: OrderService,
     private router: Router,
+    // private dialogService: DialogService,
+    private dialog: MatDialog,
     private breakpointObserver: BreakpointObserver
   ) { }
 
   ngOnInit() {
 
     // this.receipt = localStorage.getItem('receipt') || '';
-    this.isConfirmed = false;
     this.isSmallScreen = this.breakpointObserver.isMatched('(max-width: 992px)');
   }
 
@@ -68,73 +66,28 @@ export class CheckComponent implements OnInit {
   placeOrder() {
     this.addressComponent.saveAddress();
     this.receiptComponent.saveReceipt();
-    this.orderService.orderInfo = this.orderInfo();
-    console.log(this.orderInfo());
-    if (this.checkTypeComponent.checkTypeForm.value.type === '微信支付') {
-      this.wxPay();
-    }
-    else {
-      this.submitOrder();
-    }
-  }
-
-  isOk() {
-    // return this.address && this.receipt;
-  }
+    this.checkService.orderInfo = this.orderInfo();
+    // console.log(this.orderInfo());
+    this.router.navigate(['/confirm']);
 
 
-  submitOrder() {
-    this.checkService.submitOrder(this.orderInfo()).subscribe(
-      status => {
-        if (status.status === 'ok') {
-          this.cartService.items = [];
-          localStorage.removeItem('cart');
-          this.result = '订单已生成';
-        }
-        else {
-          this.result = '有故障，请重新生成订单';
-        }
-      }
-    );
-  }
-
-  wxPay() {
-    this.checkService.wxPay(this.orderInfo()).subscribe(
-      status => {
-        if (status.status === 'ok') {
-          if (this.checkService.isWxBrowser()) {
-            this.data = status.data;
-            const jsSdkConfig = this.data.jsSdkConfig;
-            this.jsConfig(jsSdkConfig);
-          }
-          else {
-            this.codeUrl = status.data.code_url;
-          }
-        }
-      });
   }
 
   canDeactivate(): Observable<boolean> | boolean {
-    window.confirm('for test');
-    return true;
+    // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
+    if (this.checkService.orderInfo) {
+      return true;
+    }
+
+    return this.openDialog();
   }
 
-  jsConfig(jsSdkConfig) {
-    wx.config({
-      debug: false,
-      appId: jsSdkConfig.appId,
-      timestamp: jsSdkConfig.timestamp,
-      nonceStr: jsSdkConfig.nonceStr,
-      signature: jsSdkConfig.signature,
-      jsApiList: ['chooseWXPay']
+  openDialog(): Observable<boolean> {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
     });
-  }
+    return dialogRef.afterClosed();
 
-
-  wxConfirm() {
-    const jsApiParameters = this.data.jsApiParameters;
-    this.checkService.confirm(jsApiParameters);
-    this.isConfirmed = true;
   }
 
 }

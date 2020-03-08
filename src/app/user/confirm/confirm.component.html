@@ -1,0 +1,47 @@
+<div class="box">
+  <h2>生成订单</h2>{{isConfirmed}}
+  <ul class="contain">
+    <li  *ngFor="let product of items" class="list">
+      <div class="left">
+        <img [src]="product.main_img">
+      </div>
+      <div class="main">
+
+        <p class="name">{{ product.name }}</p>
+        <span>{{ product.quantity }}</span>  <span>{{ product.price / 100  | currency:'CNY':'symbol-narrow' }}</span>
+
+      </div>
+    </li>
+  </ul>
+  <p>收货地址：{{address}}</p>
+  <p>支付方式：{{checkType}}</p>
+  <button mat-raised-button color="warn" (click)="confirm()" class="confirm"><h2>下订单</h2></button>
+
+  <div *ngIf="result">
+    <p>{{ result }}</p>
+    <mat-list *ngIf="checkType=='银行汇款'">
+      <mat-list-item>开户行：工行北京会城门支行</mat-list-item>
+      <mat-list-item>账号：0200 0414 0920 1503 351
+      </mat-list-item>
+      <mat-list-item>户名：北京国宇出版有限公司
+      </mat-list-item>
+    </mat-list>
+    <mat-list *ngIf="checkType=='邮局汇款'">
+    <mat-list-item>收款商户号：111340222</mat-list-item>
+    <mat-list-item>单位名称：北京国宇出版有限公司</mat-list-item>
+    <mat-list-item>收款地址：北京西城区南蜂窝路5号607</mat-list-item>
+    <mat-list-item>邮编：100055</mat-list-item>
+  </mat-list>
+
+  </div>
+
+  <div *ngIf="codeUrl">
+    <qrcode [qrdata]="codeUrl" [width]="384" [errorCorrectionLevel]="'M'"></qrcode>
+    <h4>微信扫一扫</h4>
+  </div>
+
+  <div *ngIf="data">
+    生成订单，请确认支付
+    <button mat-raised-button color="accent" (click)="wxConfirm()" [disabled]="isConfirmed">确认</button>
+  </div>
+</div>

@@ -5,18 +5,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Status } from '../status';
 import { MessageService } from '../message.service';
-import { ProductElement } from '../shop/product-element';
-import { Address } from '../user/address';
-import { Receipt } from '../user/receipt';
 
-export interface Order {
-  products: ProductElement[],
-  fee: number,
-  freight: number,
-  address: Address,
-  receipt: Receipt,
-  checkType: string
-}
+import { Order } from './order';
+
 
 @Injectable({
   providedIn: 'root'

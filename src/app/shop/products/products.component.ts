@@ -1,24 +1,31 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 
+
 import { ProductElement } from '../product-element';
 import { ProductService } from '../product.service';
 import { HandsetService } from '../../handset.service';
 import { Group } from '../group';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements AfterViewInit {
+
   products$: Observable<ProductElement[]>;
 
   group: Group;
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator') paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  dataSource;
+  items$: Observable<ProductElement[]>;
 
   constructor(
     private productService: ProductService,
@@ -26,7 +33,7 @@ export class ProductsComponent implements OnInit {
     private router: Router,
     public handsetService: HandsetService) { }
 
-    ngOnInit() {
+    ngAfterViewInit() {
     // const tmp = sessionStorage.getItem('products');
 
     // if (!tmp) {
@@ -63,8 +70,20 @@ export class ProductsComponent implements OnInit {
       })
     );
 
-
+    this.products$.subscribe(
+      res => {
+        this.dataSource =  new MatTableDataSource<ProductElement>(res);
+        this.dataSource.paginator = this.paginator;
+        // this.dataSource.sort = this.sort;
+        this.items$ = this.dataSource.connect();
+      }
+    );
   }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 
   getProducts(): void {
 
@@ -103,6 +122,11 @@ export class ProductsComponent implements OnInit {
   }
 
   save() {
+  }
+
+
+  pr() {
+    console.log(this.dataSource);
   }
 
 }

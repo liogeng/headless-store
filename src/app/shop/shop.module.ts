@@ -16,6 +16,9 @@ import { HomeComponent } from './home/home.component';
 import { ShopRoutingModule } from './shop-routing.module';
 import { BlockComponent } from './block/block.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatButtonModule,
     MatToolbarModule,
     MatTabsModule,
+    MatTableModule,
     MatPaginatorModule,
+    MatSortModule,
     ShopRoutingModule
   ]
 })

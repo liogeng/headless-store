@@ -5,7 +5,7 @@
 
 .sidenav {
   width: 240px;
-  background-color: #b0bec5;
+  /* background-color: #b0bec5; */
   /* padding-top: 64px; */
 }
 
@@ -13,7 +13,7 @@
   background: inherit;
 }
 /* .mat-primary */
-.mat-toolbar {
+.main-bar {
   position: absolute;
   top: 0px;
   /* z-index: 99; */
@@ -51,7 +51,7 @@
 
 
 
-.main {
+/* .main {
   margin: 0 16px;
   display: grid;
   grid-template-columns: auto 200px;
@@ -63,7 +63,7 @@
   column-gap: 24px;
   row-gap: 16px;
   background-color: #eeeeee;
-}
+} */
 
 .main-menu {
   line-height: 64px;
@@ -75,17 +75,21 @@
   height: 100%;
 }
 
+.sideRight {
+  width: 300px;
+  margin: 0;
+  padding: 0;
+}
+
 @media (min-width: 540px) {
   .main-menu__left {
     flex-basis: calc(50% - 4rem);
+  }
+  .sideRight {
+    width: 400px;
   }
 }
 
 
 
 
-.sideRight {
-  width: 400px;
-  margin: 0;
-  padding: 0;
-}

@@ -7,6 +7,8 @@ import { HandsetService } from '../handset.service';
 import { ProductService } from '../shop/product.service';
 import { Group } from '../shop/group';
 import { CartService } from '../user/cart.service';
+import { AuthService } from '../auth/auth.service';
+
 
 
 @Component({
@@ -22,6 +24,7 @@ export class SideNavComponent {
   constructor(
     private productService: ProductService,
     private router: Router,
+    public authService: AuthService,
     public cartService: CartService,
     public handsetService: HandsetService,
   ) { }

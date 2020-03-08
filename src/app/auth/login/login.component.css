@@ -1,12 +1,19 @@
-.button-row button,
-.button-row a {
-  margin-right: 8px;
+.box button {
+  width: 100%;
+  color: white;
 }
 
-.content {
-  width: 320px;
+.box {
+  padding: 8px 16px;
 }
 
 .full-width {
   width: 100%;
+}
+
+.main {
+  padding-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 0;
 }

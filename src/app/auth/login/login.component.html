@@ -1,36 +1,52 @@
-<div class="mat-typography content">
-  <h2>我的</h2>
-  <div *ngIf="!authService.isLoggedIn">
-    <h3>登录</h3>
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <mat-form-field class="full-width">
-        <input matInput placeholder="邮箱" formControlName="emailFormControl">
-        <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-          请输入一个能用的邮箱地址
-        </mat-error>
-        <mat-error *ngIf="email.hasError('required')">
-          邮箱<strong>必填</strong>
-        </mat-error>
-      </mat-form-field>
+<mat-toolbar>账户</mat-toolbar>
 
-      <mat-form-field class="full-width">
-        <input matInput type="password" placeholder="密码" [type]="hide ? 'password' : 'text'"
-          formControlName="passwordFormControl">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        <mat-error *ngIf="password.hasError('minLength') || password.hasError('required')">
-          密码长度须大于8位
-        </mat-error>
-      </mat-form-field>
+<div *ngIf="!authService.isLoggedIn" class="box">
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h3>登录</h3>
+      </ng-template>
 
-      <div class='button-row'>
-      <button mat-raised-button color="accent" [disabled]="!loginForm.valid">登录</button>
-      <a mat-raised-button routerLink="/getback-password">找回密码</a>
-      <a mat-raised-button routerLink="/register">我要注册</a>
-      </div>
-    </form>
-  </div>
-  <div *ngIf="authService.isLoggedIn">
-    <h3>退出</h3>
-    <button mat-raised-button (click)="logout()">退出</button>
-  </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="main">
+        <mat-form-field class="full-width" appearance="outline">
+          <input matInput placeholder="邮箱" formControlName="emailFormControl">
+          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+            请输入一个能用的邮箱地址
+          </mat-error>
+          <mat-error *ngIf="email.hasError('required')">
+            邮箱<strong>必填</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <input matInput type="password" placeholder="密码" [type]="hide ? 'password' : 'text'"
+            formControlName="passwordFormControl">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="password.hasError('minLength') || password.hasError('required')">
+            密码长度须大于8位
+          </mat-error>
+        </mat-form-field>
+
+        <div class='button-row'>
+          <button mat-raised-button color="accent" [disabled]="!loginForm.valid"><h3>登录</h3></button>
+          <!-- <a [routerLink]="[ { outlets: {side: ['getback-password']} } ]">找回密码</a> -->
+          <a [routerLink]="[ '../getback-password' ]">找回密码</a>
+
+          <!-- <a mat-raised-button routerLink="/register">我要注册</a> -->
+        </div>
+      </form>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h3>注册</h3>
+      </ng-template>
+      <app-register></app-register>
+
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<div *ngIf="authService.isLoggedIn" class="box">
+  <a [routerLink]="['/order']" (click)="closeSide()">订单</a>
+  <button mat-raised-button (click)="logout()" color="accent"><h3>退出</h3></button>
 </div>
