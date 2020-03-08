@@ -74,7 +74,7 @@ export class ProductsComponent implements AfterViewInit {
       res => {
         this.dataSource =  new MatTableDataSource<ProductElement>(res);
         this.dataSource.paginator = this.paginator;
-        // this.dataSource.sort = this.sort;
+        this.dataSource.sort = this.sort;
         this.items$ = this.dataSource.connect();
       }
     );

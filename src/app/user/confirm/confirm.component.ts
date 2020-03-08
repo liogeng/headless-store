@@ -25,6 +25,8 @@ export class ConfirmComponent implements OnInit {
   checkType: string;
   items: ProductElement[];
   address: string;
+  fee: number;
+  freight: number;
 
   constructor(
     private checkService: CheckService,
@@ -37,6 +39,8 @@ export class ConfirmComponent implements OnInit {
     this.items = this.cartService.items.filter(item => item.selected === true);
     this.orderInfo = this.checkService.orderInfo;
     this.checkType = this.orderInfo.checkType.type;
+    this.fee = this.orderInfo.fee;
+    this.freight = this.orderInfo.freight;
     const addressObject = this.orderInfo.address.address;
     this.address = `${addressObject.province.name}${addressObject.county.name}${addressObject.street}，${addressObject.postcode}，${this.orderInfo.address.name}`;
   }
@@ -70,6 +74,7 @@ export class ConfirmComponent implements OnInit {
   wxPay() {
     this.checkService.wxPay(this.orderInfo).subscribe(
       status => {
+        console.log(status);
         if (status.status === 'ok') {
           if (this.checkService.isWxBrowser()) {
             this.data = status.data;

@@ -1,21 +1,24 @@
 <div class="box">
-  <h2>生成订单</h2>{{isConfirmed}}
+  <h2>生成订单</h2><span *ngIf="orderInfo">{{orderInfo|json}}</span>
   <ul class="contain">
-    <li  *ngFor="let product of items" class="list">
+    <li *ngFor="let product of items" class="list">
       <div class="left">
         <img [src]="product.main_img">
       </div>
       <div class="main">
 
         <p class="name">{{ product.name }}</p>
-        <span>{{ product.quantity }}</span>  <span>{{ product.price / 100  | currency:'CNY':'symbol-narrow' }}</span>
+        <span>{{ product.quantity }}</span> <span>{{ product.price / 100  | currency:'CNY':'symbol-narrow' }}</span>
 
       </div>
     </li>
   </ul>
+  <p>合计：{{ fee / 100  | currency:'CNY':'symbol-narrow' }}、运费：{{ freight / 100  | currency:'CNY':'symbol-narrow' }}</p>
   <p>收货地址：{{address}}</p>
   <p>支付方式：{{checkType}}</p>
-  <button mat-raised-button color="warn" (click)="confirm()" class="confirm"><h2>下订单</h2></button>
+  <button mat-raised-button color="warn" (click)="confirm()" class="confirm">
+    <h2>下订单</h2>
+  </button>
 
   <div *ngIf="result">
     <p>{{ result }}</p>
@@ -27,11 +30,11 @@
       </mat-list-item>
     </mat-list>
     <mat-list *ngIf="checkType=='邮局汇款'">
-    <mat-list-item>收款商户号：111340222</mat-list-item>
-    <mat-list-item>单位名称：北京国宇出版有限公司</mat-list-item>
-    <mat-list-item>收款地址：北京西城区南蜂窝路5号607</mat-list-item>
-    <mat-list-item>邮编：100055</mat-list-item>
-  </mat-list>
+      <mat-list-item>收款商户号：111340222</mat-list-item>
+      <mat-list-item>单位名称：北京国宇出版有限公司</mat-list-item>
+      <mat-list-item>收款地址：北京西城区南蜂窝路5号607</mat-list-item>
+      <mat-list-item>邮编：100055</mat-list-item>
+    </mat-list>
 
   </div>
 

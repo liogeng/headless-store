@@ -11,7 +11,6 @@ import { ProductElement } from '../../shop/product-element';
 import { CheckTypeComponent } from '../check-type/check-type.component';
 import { Router } from '@angular/router';
 import { DialogComponent } from '../dialog/dialog.component';
-// import { DialogService } from 'src/app/dialog.service';
 
 
 

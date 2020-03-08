@@ -26,13 +26,29 @@ export class OrdersComponent implements OnInit {
   }
 
   getAddressOut(address: Address): string {
-    return [
+    let ad = '';
+    if (address.address) {
+       ad = [
       address.address.province.name,
       address.address.city.code === address.address.province.code ? '' : address.address.city.name,
       address.address.county.code === address.address.city.code ? '' : address.address.county.name,
       address.address.street,
       '，',
-      address.address.postcode,
+      address.address.postcode
+      ].join('');
+    }
+    // else {
+    //    ad = [
+    //     address.province.name,
+    //     address.city.name,
+    //     address.county.name,
+    //     address.street,
+    //     '，',
+    //     address.postcode
+    //     ].join('');
+    // }
+    return [
+      ad,
       '，',
       '收件人：',
       address.name,
