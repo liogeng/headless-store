@@ -10,6 +10,7 @@ import { Address } from '../address';
 })
 export class OrdersComponent implements OnInit {
   myOrders: any [];
+  display: string[] = ['out_trade_no','time_end','check_type','total_fee','result_code','products'];
 
   constructor(
     private orderService: OrderService
@@ -25,7 +26,20 @@ export class OrdersComponent implements OnInit {
     );
   }
 
-  getAddressOut(address: Address): string {
+  getCheckType(checkType) {
+    if (checkType && checkType.name) {
+      return checkType.name;
+    }
+
+    if (checkType && checkType.type) {
+      return checkType.type;
+    }
+    return '';
+  }
+
+
+
+  getAddressOut(address: Address|any): string {
     let ad = '';
     if (address.address) {
        ad = [
@@ -37,16 +51,16 @@ export class OrdersComponent implements OnInit {
       address.address.postcode
       ].join('');
     }
-    // else {
-    //    ad = [
-    //     address.province.name,
-    //     address.city.name,
-    //     address.county.name,
-    //     address.street,
-    //     '，',
-    //     address.postcode
-    //     ].join('');
-    // }
+    else {
+       ad = [
+        address.province.name,
+        address.city.name,
+        address.county.name,
+        address.street,
+        '，',
+        address.postcode
+        ].join('');
+    }
     return [
       ad,
       '，',
@@ -59,8 +73,10 @@ export class OrdersComponent implements OnInit {
   }
 
   getProductList(products) {
-    return products.map(product => product.name).join(',');
-
+    if (products) {
+      return products.map(product => product.name).join(',');
+    }
+    return '';
   }
 
 }

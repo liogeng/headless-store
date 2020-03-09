@@ -83,9 +83,10 @@ export class ConfirmComponent implements OnInit {
           }
           else {
             this.codeUrl = status.data.code_url;
+            this.isConfirmed = true;
           }
         }
-        this.isConfirmed = true;
+
       });
   }
 

@@ -1,12 +1,43 @@
-<ol>
-  <li *ngFor="let order of myOrders">
+<div class="box">
+<table mat-table [dataSource]="myOrders" class="mat-elevation-z8">
 
-    {{order.out_trade_no}}:
-    {{getAddressOut(order.address)}}
-    <span *ngIf="order.time_end">--{{order.time_end}}</span>
-    <span *ngIf="order.check_type">--{{order.check_type['type']}}</span>
-    --{{order.total_fee/100  | currency:'CNY':'symbol-narrow' }}
-    <span *ngIf="order.result_code">--{{order.result_code}}</span>
-    --{{getProductList(order.products)}}
-  </li>
-</ol>
+    <!-- Position Column -->
+    <ng-container matColumnDef="out_trade_no">
+      <th mat-header-cell *matHeaderCellDef> 单号 </th>
+      <td mat-cell *matCellDef="let element"> {{element.out_trade_no}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="time_end">
+      <th mat-header-cell *matHeaderCellDef> 日期 </th>
+      <td mat-cell *matCellDef="let element"> {{element.time_end}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="check_type">
+      <th mat-header-cell *matHeaderCellDef> 支付方式 </th>
+      <td mat-cell *matCellDef="let element"> {{getCheckType(element.check_type)}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="total_fee">
+      <th mat-header-cell *matHeaderCellDef> 金额 </th>
+      <td mat-cell *matCellDef="let element"> {{element.total_fee/100  | currency:'CNY':'symbol-narrow'}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="result_code">
+      <th mat-header-cell *matHeaderCellDef> 返回码 </th>
+      <td mat-cell *matCellDef="let element"> {{element.result_code}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="products">
+      <th mat-header-cell *matHeaderCellDef> 物品 </th>
+      <td mat-cell *matCellDef="let element"> {{getProductList(element.products)}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="display"></tr>
+    <tr mat-row *matRowDef="let row; columns: display;"></tr>
+  </table>
+</div>
