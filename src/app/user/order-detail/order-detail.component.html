@@ -1,0 +1,15 @@
+<div class="box">
+<div *ngIf="order$ | async as order">
+  <mat-list>
+    <mat-list-item>
+{{getAddressOut(order.data.address)}}
+</mat-list-item>
+<mat-list-item>
+{{getProductList(order.data.products)}}
+</mat-list-item>
+<mat-list-item>
+  {{(order.data.total_fee) / 100}}
+</mat-list-item>
+</mat-list>
+</div>
+</div>

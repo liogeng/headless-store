@@ -11,7 +11,7 @@ import { Receipt } from './receipt';
   providedIn: 'root'
 })
 export class ReceiptService {
-  jwtToken = localStorage.getItem('accessToken');
+  jwtToken = localStorage.getItem('jwt_token');
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

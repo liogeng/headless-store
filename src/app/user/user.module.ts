@@ -32,6 +32,8 @@ import { ConfirmComponent } from './confirm/confirm.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { DialogComponent } from './dialog/dialog.component';
     ReceiptComponent,
     CheckTypeComponent,
     ConfirmComponent,
-    DialogComponent
+    DialogComponent,
+    OrderDetailComponent
   ],
   imports: [
     CommonModule,
@@ -65,6 +68,7 @@ import { DialogComponent } from './dialog/dialog.component';
     MatStepperModule,
     MatDialogModule,
     MatExpansionModule,
+    MatCardModule,
     QRCodeModule,
     LayoutModule,
     UserRoutingModule,

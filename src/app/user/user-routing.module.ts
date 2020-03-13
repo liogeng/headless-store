@@ -9,6 +9,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { CheckComponent } from './check/check.component';
 import { AuthGuard } from '../auth.guard';
 import { OrdersComponent } from './orders/orders.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 
 
@@ -18,11 +19,17 @@ const userRoutes: Routes = [
     component: CartComponent,
     canDeactivate: [CanDeactivateGuard],
   },
-  {path: 'order', component: OrdersComponent},
+  {
+    path: 'order',
+    component: OrdersComponent
+  },
+  {
+    path: 'order-detail/:id',
+    component: OrderDetailComponent
+  },
   {
     path: 'bag',
     component: BagComponent,
-    // canDeactivate: [CanDeactivateGuard],
     outlet: 'side'
   },
   {

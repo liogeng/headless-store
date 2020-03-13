@@ -9,4 +9,5 @@ export interface Order {
   address: Address;
   receipt: Receipt;
   checkType: {type:string};
+  time_place?: string;
 }

@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+
 
 
 import { ProductElement } from '../product-element';
@@ -31,6 +32,7 @@ export class ProductsComponent implements AfterViewInit {
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
+    private pageInatorIntl: MatPaginatorIntl,
     public handsetService: HandsetService) { }
 
     ngAfterViewInit() {
@@ -59,13 +61,18 @@ export class ProductsComponent implements AfterViewInit {
     //   }
     //   )
     // )
+    this.pageInatorIntl.itemsPerPageLabel = '每页';
+    this.pageInatorIntl.firstPageLabel = '第一页';
+    this.pageInatorIntl.lastPageLabel = '最后一页';
+    this.pageInatorIntl.previousPageLabel = '上一页';
+    this.pageInatorIntl.nextPageLabel = '下一页';
 
     this.products$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>  {
         setTimeout(() => this.group = {
           group_id: +params.get('id'),
           group_name: params.get('name')
-        }, 0);
+        },0);
         return this.productService.getProducts(params.get('id'));
       })
     );

@@ -1,5 +1,4 @@
 <mat-toolbar>账户</mat-toolbar>
-
 <div *ngIf="!authService.isLoggedIn" class="box">
   <mat-tab-group>
     <mat-tab>
@@ -47,6 +46,9 @@
   </mat-tab-group>
 </div>
 <div *ngIf="authService.isLoggedIn" class="box">
-  <a [routerLink]="['/order']" (click)="closeSide()">订单</a>
-  <button mat-raised-button (click)="logout()" color="accent"><h3>退出</h3></button>
+  <mat-nav-list>
+    <a mat-list-item [routerLink]="['/order']" (click)="closeSide()">订单</a>
+    <a mat-list-item (click)="logout()">退出</a>
+  </mat-nav-list>
+
 </div>

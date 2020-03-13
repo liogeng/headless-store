@@ -10,7 +10,7 @@ import { Address } from '../address';
 })
 export class OrdersComponent implements OnInit {
   myOrders: any [];
-  display: string[] = ['out_trade_no','time_end','check_type','total_fee','result_code','products'];
+  display: string[] = ['out_trade_no','time_place','check_type','total_fee','result_code'];
 
   constructor(
     private orderService: OrderService
@@ -37,46 +37,5 @@ export class OrdersComponent implements OnInit {
     return '';
   }
 
-
-
-  getAddressOut(address: Address|any): string {
-    let ad = '';
-    if (address.address) {
-       ad = [
-      address.address.province.name,
-      address.address.city.code === address.address.province.code ? '' : address.address.city.name,
-      address.address.county.code === address.address.city.code ? '' : address.address.county.name,
-      address.address.street,
-      '，',
-      address.address.postcode
-      ].join('');
-    }
-    else {
-       ad = [
-        address.province.name,
-        address.city.name,
-        address.county.name,
-        address.street,
-        '，',
-        address.postcode
-        ].join('');
-    }
-    return [
-      ad,
-      '，',
-      '收件人：',
-      address.name,
-      '，',
-      '电话：',
-      address.phone
-    ].join('');
-  }
-
-  getProductList(products) {
-    if (products) {
-      return products.map(product => product.name).join(',');
-    }
-    return '';
-  }
 
 }

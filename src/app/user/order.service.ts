@@ -13,7 +13,7 @@ import { Order } from './order';
   providedIn: 'root'
 })
 export class OrderService {
-  jwtToken = localStorage.getItem('accessToken');
+  jwtToken = localStorage.getItem('jwt_token');
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -46,5 +46,14 @@ export class OrderService {
         catchError(this.handleError<Status>('orderService'))
       );
 
+  }
+
+  getOrder(id) {
+    const url = `/api/order/${id}`;
+    return this.http.get<Status>(url, this.httpOptions)
+      .pipe(
+        tap(val => this.log('val.message')),
+        catchError(this.handleError<Status>('orderService'))
+      );
   }
 }

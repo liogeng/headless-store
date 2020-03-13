@@ -15,7 +15,7 @@ declare let wx: any;
   providedIn: 'root'
 })
 export class CheckService {
-  jwtToken = localStorage.getItem('accessToken');
+  jwtToken = localStorage.getItem('jwt_token');
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

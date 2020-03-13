@@ -1,4 +1,5 @@
 <div class="box">
+  <h3>我的订单</h3>
 <table mat-table [dataSource]="myOrders" class="mat-elevation-z8">
 
     <!-- Position Column -->
@@ -8,9 +9,9 @@
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="time_end">
+    <ng-container matColumnDef="time_place">
       <th mat-header-cell *matHeaderCellDef> 日期 </th>
-      <td mat-cell *matCellDef="let element"> {{element.time_end}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.time_place}} </td>
     </ng-container>
 
     <!-- Weight Column -->
@@ -27,17 +28,17 @@
 
     <!-- Weight Column -->
     <ng-container matColumnDef="result_code">
-      <th mat-header-cell *matHeaderCellDef> 返回码 </th>
+      <th mat-header-cell *matHeaderCellDef> 支付状态 </th>
       <td mat-cell *matCellDef="let element"> {{element.result_code}} </td>
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="products">
+    <!-- <ng-container matColumnDef="products">
       <th mat-header-cell *matHeaderCellDef> 物品 </th>
       <td mat-cell *matCellDef="let element"> {{getProductList(element.products)}} </td>
-    </ng-container>
+    </ng-container> -->
 
     <tr mat-header-row *matHeaderRowDef="display"></tr>
-    <tr mat-row *matRowDef="let row; columns: display;"></tr>
+    <tr mat-row *matRowDef="let row; columns: display;" [routerLink]="['/order-detail', row.out_trade_no]"></tr>
   </table>
 </div>

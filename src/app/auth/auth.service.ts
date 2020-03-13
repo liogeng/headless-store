@@ -11,8 +11,8 @@ import { MessageService } from '../message.service';
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn = localStorage.getItem('accessToken') ? true : false;
-  isPasswordChanged = false;
+  isLoggedIn: boolean = false;
+  isPasswordChanged: boolean = false;
   redirectUrl: string;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -40,8 +40,9 @@ export class AuthService {
       .pipe(
         tap(val => {
           if (val.status === 'ok') {
+            localStorage.setItem('jwt_token', val.data.jwt_token);
             this.isLoggedIn = true;
-            localStorage.setItem('accessToken', val.data.accessToken);
+            console.log(this.isLoggedIn);
           }
           this.log(val.message);
         }),
@@ -83,7 +84,29 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem('jwt_token');
     this.isLoggedIn = false;
+  }
+
+  checkLoggedIn(): Observable<Status> {
+    this.isLoggedIn = false;
+    const jwt_token = localStorage.getItem('jwt_token');
+    if (jwt_token) {
+      const url = '/user/check-logged-in';
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${jwt_token}`})
+      }
+      return this.http.get<Status>(url, httpOptions)
+        .pipe(
+          tap(val => {
+            if (val.status === 'ok') {
+              this.isLoggedIn = true;
+            }
+          }),
+          catchError(this.handleError<Status>('checkLoggedIn'))
+        );
+    }
   }
 }
