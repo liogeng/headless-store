@@ -35,12 +35,21 @@ export class ProductService {
   }
 
   getProducts(id: string): Observable<ProductElement[]> {
-    const url = `/api/group/${id}`;
-    return this.http.get<ProductElement[]>(url)
-      .pipe(
-        tap(_ => this.log('已获取商品列表')),
-        catchError(this.handleError<ProductElement[]>('getProducts', []))
-      );
+    const products: ProductElement[] = JSON.parse(sessionStorage.getItem(`products_${id}`));
+    if (products) {
+      return of(products);
+    }
+    else {
+      const url = `/api/group/${id}`;
+      return this.http.get<ProductElement[]>(url)
+        .pipe(
+          tap(val => {
+            this.log('已获取商品列表');
+            sessionStorage.setItem(`products_${id}`, JSON.stringify(val));
+          }),
+          catchError(this.handleError<ProductElement[]>('getProducts', []))
+        );
+    }
   }
 
   getProduct(id: string): Observable<Product> {
@@ -72,4 +81,7 @@ export class ProductService {
     }
   }
 
+  save() {
+
+  }
 }

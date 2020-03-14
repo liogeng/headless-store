@@ -29,22 +29,16 @@ import { ShopModule } from './shop/shop.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 
-import { MessagesComponent } from './messages/messages.component';
-import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { SideMenuComponent } from './side-menu/side-menu.component';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MessagesComponent,
-    HeaderComponent,
     FooterComponent,
     SideNavComponent,
-    SideMenuComponent,
     PageNotFoundComponent,
   ],
   imports: [
